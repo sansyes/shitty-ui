@@ -15,13 +15,16 @@ local Window = Fluent:CreateWindow({
 --Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
 local Tabs = {
     Main = Window:AddTab({ Title = "Mic Arab", Icon = "sprout" }),
+    Misc = Window:AddTab({ Title = "Misc", Icon = "star" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
 Window:SelectTab(1)
 local playerlist = {}
 
 for _,i in pairs(game.Players:GetChildren()) do
-    table.insert(playerlist,i.Name)
+    if i ~= game.Players.LocalPlayer then
+        table.insert(playerlist,i.Name)
+    end
 end
 print(game.HttpService:JSONEncode(playerlist))
 do
@@ -82,14 +85,21 @@ do
          end
     })
 
-        Tabs.Main:AddButton({
+    Tabs.Main:AddButton({
         Title = "UnCuff self",
         Description = "Uncuff yourself in mic arab very epic",
         Callback = function()
             funcs.uncuffself()
-         end
+            end
     })
     
+    Tabs.Misc:AddButton({
+        Title = "Rejoin",
+        Description = "Rejoin the same game",
+        Callback = function()
+            game:GetService("TeleportService"):Teleport(game.PlaceId, LocalPlayer) task.wait()
+         end
+    })
 end
 
 
