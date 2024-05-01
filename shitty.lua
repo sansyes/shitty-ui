@@ -136,7 +136,6 @@ local MyDropdown = tab22:Dropdown{
 	Callback = function(item)
         print(Items)
         for _,i in pairs(playerslist) do
-            if table.find([playerslist,]) then pickedplayernorpag = i end
         end
         return
     end
