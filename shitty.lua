@@ -26,6 +26,7 @@ tab:Toggle({
                         game:GetService("Players").LocalPlayer.Character.Handcuff.DataSender:FireServer(v.Character.UpperTorso)
                     end
                 end
+		if state == false then return end
             end 
         end)
         end
