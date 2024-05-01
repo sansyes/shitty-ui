@@ -1,173 +1,161 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
-local pickedplayernorpag = nil
-
-
-local GUI = Library:create{
-    Name = "shitty ui",
-    Theme = Library.Themes.Legacy,
-}
-
-local tab = GUI:Tab{
-    Name = "Mic Arab",
-    Icon = 'rbxassetid://12493101081'
-}
-local tab22 = GUI:Tab{
-    Name = "Normal",
-}
-tab:Toggle({
-    Name = "Spam Cuffs [Takes Abit of time]",
-    Callback = function(state)
-    print(state)
-        if state == true then
-            task.spawn(function()
-             while wait(0.05) do
-                for i,v in pairs(game.Players:GetPlayers()) do
-                    if v ~= game.Players.LocalPlayer then
-                        game:GetService("Players").LocalPlayer.Character.Handcuff.DataSender:FireServer(v.Character.UpperTorso)
-                    end
-                end
-		if state == false then return end
-            end 
-        end)
-        end
-    end
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+local funcs = {}
+local playerselected = nil
+local Window = Fluent:CreateWindow({
+    Title = "shitty ui " .. Fluent.Version,
+    SubTitle = "by sans on discord fr add me :)",
+    TabWidth = 140,
+    Size = UDim2.fromOffset(780, 520),
+    Acrylic = false, -- The blur may be detectable, setting this to false disables blur entirely
+    Theme = "Darker",
+    MinimizeKey = Enum.KeyCode.F6 -- Used when theres no MinimizeKeybind
 })
-tab:Button{
-    Name = "Give Cuffs",
-    Callback = function()
-        
--- script made by Sans#0009 Thanks For Using my Script Dont Remove This Credits Please --
 
-for i,v in pairs(game.Players:GetPlayers()) do
-				if v.Backpack:FindFirstChild("Admin Cuffs") == nil then	
-						else
-												if game.Players.LocalPlayer.Backpack:FindFirstChild("Admin Cuffs") == nil then
-					v.Backpack:FindFirstChild("Admin Cuffs").Parent = game.Players.LocalPlayer.Backpack
-							end
-				end
-						if v.Backpack:FindFirstChild("Handcuff") == nil then	
-				else
-						if game.Players.LocalPlayer.Backpack:FindFirstChild("Handcuff") == nil then
-					v.Backpack:FindFirstChild("Handcuff").Parent = game.Players.LocalPlayer.Backpack
-							end
-		end
-end  
-
-
--- script made by Sans#0009 Thanks For Using my Script Dont Remove This Credits Please --
-    end
+--Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
+local Tabs = {
+    Main = Window:AddTab({ Title = "Mic Arab", Icon = "sprout" }),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
+Window:SelectTab(1)
+local playerlist = {}
 
-tab22:Textbox{
-    Name = "Players",
+for _,i in pairs(game.Players:GetChildren()) do
+    table.insert(playerlist,i.Name)
+end
+print(game.HttpService:JSONEncode(playerlist))
+do
+    local plrselec = Tabs.Main:AddDropdown("Dropdown", {
+        Title = "Players Selection",
+        Values = playerlist,
+        Multi = false,
+        Default = 0,
+    })
 
-    Callback = function(text)
-        if text == "me" then
-            game.workspace.CurrentCamera.Parent = game.Players.LocalPlayer
+    plrselec:OnChanged(function(Value)
+        if playerselected ~= nil then 
+            if game.Players:FindFirstChild(playerselected) then
+                if game.Players:FindFirstChild(playerselected).Character:FindFirstChildOfClass("Highlight") then
+                    game.Players:FindFirstChild(playerselected).Character:FindFirstChildOfClass("Highlight"):Destroy()
+                end
+            end
         end
-    end
-}
-
-
-tab22:Button{
-    Name = "Chams",
-    Callback = function()
-        while wait() do
-            for _,i in pairs(game.Players:GetPlayers()) do
-                if i.Character:FindFirstChild("Highlight") == nil and i ~= game.Players.LocalPlayer then
+        playerselected = Value
+        if playerselected ~= nil then 
+            if game.Players:FindFirstChild(playerselected) then
+                if not game.Players:FindFirstChild(playerselected).Character:FindFirstChildOfClass("Highlight") then
                     local chams = Instance.new("Highlight")
                     chams.OutlineColor = Color3.fromRGB(0, 187, 255)
                     chams.FillTransparency = 1
-                    chams.Parent = i.Character
+                    chams.Parent = game.Players:FindFirstChild(playerselected).Character
                 end
             end
-            return
         end
-    end
-}
-tab22:Button{
-    Name = " Remove Chams",
-    Callback = function()
-        while wait() do
-            for _,i in pairs(game.Players:GetPlayers()) do
-                if i.Character:FindFirstChild("Highlight") == nil then
-                    else
-                        i.Character.Highlight:Destroy()
-                    
-                end
+    end)
+
+    Tabs.Main:AddButton({
+        Title = "Cuff all",
+        Description = "Cuffing all players in mic arab very epic [buggy a bit]",
+        Callback = function()
+            funcs.cuffall()
+            Fluent:Notify({
+                Title = "cuff all",
+                Content = "this may take a min if it take a long time unequip cuffs and equip it again and run cuff all again.",
+                Duration = 3
+            })
+         end
+    })
+
+    Tabs.Main:AddButton({
+        Title = "Cuff selected player",
+        Description = "Cuffs Selected player in mic arab very epic [buggy a bit - i think]",
+        Callback = function()
+            if playerselected == nil then 
+                return
             end
-            return
-        end
-    end
-}
-GUI:Notification{
-	Title = "Alert",
-	Text = "welcome niggers to shitty ui",
-	Duration = 3,
-	Callback = function() end
-}
+            funcs.cuffplr(game.Players:FindFirstChild(playerselected))
+            Fluent:Notify({
+                Title = "cuff selected player",
+                Content = "this may take a min if it take a long time unequip cuffs and equip it again and run cuff all again.",
+                Duration = 3
+            })
+         end
+    })
+
+        Tabs.Main:AddButton({
+        Title = "UnCuff self",
+        Description = "Uncuff yourself in mic arab very epic",
+        Callback = function()
+            funcs.uncuffself()
+         end
+    })
+    
+end
 
 
-tab22:Button{
-    Name = "ReJoin",
-    Callback = function()
-        GUI:Prompt{
-            Followup = false,
-            Title = "WARNING",
-            Text = "you want to rejoin the same game?",
-            Buttons = {
-                ok = function()
-                    game:GetService("TeleportService"):Teleport(game.PlaceId, LocalPlayer) task.wait()
-                    return true
-                end,
-                no = function()
-                    return false
-                end
-            }
-        }
-    end
-}
 
-local playerslist = {}
-local MyDropdown = tab22:Dropdown{
-	Name = "Players",
-	StartingText = "Select...",
-	Description = nil,
-	Items = {},
-	Callback = function(item)
-        print(Items)
-        for _,i in pairs(playerslist) do
-        end
-        return
-    end
-}
-tab22:Button{
-    Name = "Pick Cham",
-    Callback = function()
-        if pickedplayernorpag == nil then
-            GUI:Notification{
-                Title = "Alert",
-                Text = "Please pick a player to give cham",
-                Duration = 4,
-                Callback = function() end
-            }
-        else
-            local chams = Instance.new("Highlight")
-            chams.OutlineColor = Color3.fromRGB(0, 187, 255)
-            chams.FillTransparency = 1
-            chams.Parent = game.Players:FindFirstChild(MyDropdown.StartingText()).Character
-        end
-    end
-}
-while wait() do
-    local num = 0
-    for _,i in pairs(game.Players:GetPlayers()) do
-        num += 1
-        MyDropdown:AddItems({
-            {i.Name, num}
+InterfaceManager:SetLibrary(Fluent)
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+--load
+
+Fluent:Notify({
+    Title = "shitty ui",
+    Content = "shitty ui has been loaded.",
+    Duration = 4
+})
+
+-----functions commands n shit
+
+function funcs.uncuffself()
+    if not game.Players.LocalPlayer.Backpack:FindFirstChild("Handcuff") and not game.Players.LocalPlayer.Character:FindFirstChild("Handcuff")  then
+        Fluent:Notify({
+            Title = "UnCuff self",
+            Content = "you do not have handcuff/handcuffs or the name of the headcuffs has been renamed.",
+            Duration = 4
         })
-        table.insert(playerslist,i.Name)
-        
+        return
+    elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Handcuff") then
+        game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Handcuff"))
     end
-    return
+    task.wait(0.05)
+    for _,i in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+        if i:IsA("MeshPart"or"Part") then
+             game:GetService("Players").LocalPlayer.Character.Handcuff.DataSender:FireServer(game.Players.LocalPlayer.Character.Head)
+             game:GetService("Players").LocalPlayer.Character.Handcuff.DataSender:FireServer()
+        end
+    end
+end
+
+function funcs.cuffall()
+    if not game.Players.LocalPlayer.Backpack:FindFirstChild("Handcuff") and not game.Players.LocalPlayer.Character:FindFirstChild("Handcuff")  then
+        Fluent:Notify({
+            Title = "Cuff all",
+            Content = "you do not have handcuff/handcuffs or the name of the headcuffs has been renamed.",
+            Duration = 4
+        })
+        return
+    elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Handcuff") then
+        game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Handcuff"))
+    end
+    task.wait(0.05)
+    for i,v in pairs(game.Players:GetPlayers()) do
+        if v ~= game.Players.LocalPlayer then
+            game:GetService("Players").LocalPlayer.Character:FindFirstChild("Handcuff").DataSender:FireServer(v.Character.Head)
+        end
+    end
+end
+
+function funcs.cuffplr(plr:Player)
+    if not game.Players.LocalPlayer.Backpack:FindFirstChild("Handcuff") and not game.Players.LocalPlayer.Character:FindFirstChild("Handcuff")  then
+        Fluent:Notify({
+            Title = "Cuff selected player",
+            Content = "you do not have handcuff/handcuffs or the name of the headcuffs has been renamed.",
+            Duration = 4
+        })
+        return
+    elseif game.Players.LocalPlayer.Backpack:FindFirstChild("Handcuff") then
+        game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Handcuff"))
+    end
+    task.wait(0.05)
+    game:GetService("Players").LocalPlayer.Character.Handcuff.DataSender:FireServer(plr.Character.Head)
 end
