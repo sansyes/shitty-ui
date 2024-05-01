@@ -86,7 +86,7 @@ do
     })
 
     Tabs.Main:AddButton({
-        Title = "UnCuff self",
+        Title = "UnCuff self - not working",
         Description = "Uncuff yourself in mic arab very epic",
         Callback = function()
             funcs.uncuffself()
