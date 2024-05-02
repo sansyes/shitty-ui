@@ -101,7 +101,7 @@ do
         end
     })
 
-    if game.PlaceId == (10200194177 or 15568252850) then
+    if game.PlaceId == 10200194177 or 15568252850 then
         Tabs.Main:AddButton({
             Title = "Kill All",
             Description = "Kills all players",
