@@ -1,1 +1,299 @@
-local v0=loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))();local v1=game:GetService("HttpService");getgenv().afk_spam=false;getgenv().afk_spam_speed=0.5;getgenv().spam_commandlogger=false;getgenv().ESPValue=false;local v6=game:GetService("Players");local v7=v1:JSONDecode(game:HttpGet("https://raw.githubusercontent.com/sansyes/shitty-ui/main/info.json"));local v8=v0.CreateLib("Sex Hack - Verson : "   .. tostring(v7.Verson) ,"Midnight");local v9=v8:NewTab("Info");local v10=v9:NewSection("Script/Hack info");v10:NewLabel("Verson : "   .. tostring(v7.Verson) );v10:NewLabel("[DEV] Message : \n"   .. v7.Message );local v11=v9:NewSection("Credits");v11:NewLabel("Discord : "   .. tostring(v7.discordlink) );local v12=v8:NewTab("Arab Hangout");local v13=v12:NewSection("Viusal fun");v13:NewToggle("ESP","ESP",function(v15) if (v15==true) then local v39=419 -(259 + 160) ;while true do if (v39==(543 -(215 + 328))) then getgenv().ESPValue=true;for v82,v83 in pairs(v6:GetPlayers()) do if (v83~=v6.LocalPlayer) then if  not v83.Character:FindFirstChild("ESP_sex") then local v86=0 + 0 ;while true do if (v86==(0 + 0)) then createesp(v83);v83.Character:WaitForChild("Humanoid").StateChanged:Connect(function(v89) if (getgenv().ESPValue==true) then if ((v89==Enum.HumanoidStateType.Dead) or (v83.Character:WaitForChild("Humanoid").Health<=(0 -0))) then createesp(v83);end end end);v86=1;end if (v86==(3 -2)) then v6.PlayerAdded:Connect(function(v90) if (getgenv().ESPValue==true) then v90.CharacterAdded:Connect(function(v91) if  not v91:FindFirstChild("ESP_sex") then createesp(v90);end end);end end);break;end end end end end break;end end else getgenv().ESPValue=false;for v46,v47 in pairs(v6:GetPlayers()) do if v47.Character:FindFirstChild("ESP_sex") then v47.Character:FindFirstChild("ESP_sex"):Destroy();end end end end);v13:NewSlider("Spam afk SPEED","",542 -(416 + 26) ,3 -2 ,function(v16) getgenv().afk_spam_speed=v16;end);v13:NewToggle("Spam afk","Spam afk and unafk",function(v18) if (v18==true) then local v41=0 + 0 ;local v42;while true do if ((0 -0)==v41) then v42=438 -(145 + 293) ;while true do if (v42==0) then getgenv().afk_spam=true;AFKSP();break;end end break;end end else getgenv().afk_spam=false;end end);local v14=v12:NewSection("Op Shit");v14:NewButton("Get Cuffs","Gives Handcuffs for free to you",function() local v19=430 -(44 + 386) ;local v20;while true do if (v19==(1486 -(998 + 488))) then v20=getcuffs();if ((typeof(v20)=="Instance") and  not v6.LocalPlayer.Backpack:FindFirstChild("Handcuffs")) then v20.Parent=v6.LocalPlayer.Backpack;else print("there is no one with cuffs to steal");end break;end end end);v14:NewButton("Cuff All [ Working ]","Cuffs all players if there you have handcuffs",function() local v21=0 + 0 ;while true do if (v21==(1 + 0)) then wait();task.spawn(function() for v77,v78 in pairs(v6:GetPlayers()) do if ((v78~=v6.LocalPlayer) and  not v78.Character:FindFirstChild("Handcuffs")) then cuff(v78);end end end);break;end if (v21==(772 -(201 + 571))) then if ( not v6.LocalPlayer.Backpack:FindFirstChild("Handcuffs") or  not v6.LocalPlayer.Character:FindFirstChild("Handcuffs")) then local v79=0;local v80;while true do if (v79==(1138 -(116 + 1022))) then v80=getcuffs();if ((typeof(v80)=="Instance") and  not v6.LocalPlayer.Backpack:FindFirstChild("Handcuffs")) then v80.Parent=v6.LocalPlayer.Backpack;else print("there is no one with cuffs to steal");end break;end end end v6.LocalPlayer.Character:WaitForChild("Humanoid"):EquipTool(v6.LocalPlayer.Backpack:FindFirstChild("Handcuffs"));v21=1;end end end);v14:NewToggle("Spam Logger","Spam Logger, spams the event logger",function(v22) if (v22==true) then local v44=0 -0 ;while true do if (v44==0) then getgenv().spam_commandlogger=true;SpamLoggerEvent();break;end end else getgenv().spam_commandlogger=false;end end);function getplayerinfo(v23) local v24=0 + 0 ;local v25;while true do if (v24==0) then v25={ingroup=v23:IsInGroup(5740208),userid=v23.UserId,rankname=function() if v23:GetRoleInGroup(20955723 -15215515 ) then return v23:GetRoleInGroup(20383984 -14643776 );else return nil;end end()};return v25;end end end function getcuffs() for v37,v38 in pairs(v6:GetPlayers()) do if (v38~=v6.LocalPlayer) then if (v38.Backpack:FindFirstChild("Handcuffs") and v38.Backpack:FindFirstChild("Handcuffs"):IsA("Tool")) then return v38.Backpack:FindFirstChild("Handcuffs");end end end end function createesp(v26) local v27=859 -(814 + 45) ;local v28;local v29;local v30;local v31;local v32;local v33;while true do if ((2 -1)==v27) then v29.ResetOnSpawn=true;v29.AlwaysOnTop=true;v29.Size=UDim2.fromScale(1 + 3 ,5.5);v30=Instance.new("Frame");v27=1 + 1 ;end if (v27==6) then v33.Position=UDim2.fromScale(885.8 -(261 + 624) ,0.15 -0 );v33.Size=UDim2.fromScale(0.8,1080.2 -(1020 + 60) );v33.BackgroundTransparency=1424 -(630 + 793) ;v33.TextColor3=Color3.fromRGB(863 -608 ,1207 -952 ,255);v27=3 + 4 ;end if (v27==3) then v31.Parent=v30;v31.Color=Color3.new(0.717647 -0 ,1747.003922 -(760 + 987) ,1914 -(1789 + 124) );v31.Thickness=2;v32=Instance.new("TextLabel");v27=4;end if (v27==2) then v30.Parent=v29;v30.Size=UDim2.fromScale(767 -(745 + 21) ,1 + 0 );v30.BackgroundTransparency=1;v31=Instance.new("UIStroke");v27=3;end if (v27==(0 -0)) then v28=getplayerinfo(v26);v29=Instance.new("BillboardGui");v29.Parent=v26.Character;v29.Name="ESP_sex";v27=1;end if (v27==5) then v32.TextColor3=Color3.fromRGB(1000 -745 ,3 + 252 ,255);v32.Text="UserId : "   .. v28.userid ;v33=Instance.new("TextLabel");v33.Parent=v29;v27=5 + 1 ;end if (v27==(1059 -(87 + 968))) then v32.Parent=v29;v32.Position=UDim2.fromScale(0.8,0 -0 );v32.Size=UDim2.fromScale(0.8 + 0 ,0.2 -0 );v32.BackgroundTransparency=1;v27=1418 -(447 + 966) ;end if (v27==7) then v33.Text="Rank : "   .. v28.rankname ;return v29;end end end function cuff(v34) local v35={[2 -1 ]="mmKoplat_",[1819 -(1703 + 114) ]=v34.Character.HumanoidRootPart};v6.LocalPlayer.Character:FindFirstChild("Handcuffs"):WaitForChild("EventRemoteCuff"):FireServer(unpack(v35));end function uncuff() local v36={[702 -(376 + 325) ]="mmKoplat_UN"};v6.LocalPlayer.Character:FindFirstChild("Handcuffs"):WaitForChild("EventRemoteCuff"):FireServer(unpack(v36));end function AFKSP() if (getgenv().afk_spam==true) then task.spawn(function() while true do if (getgenv().afk_spam==false) then game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("AFK"):FireServer(false);return;end game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("AFK"):FireServer(true);task.wait(getgenv().afk_spam_speed/(161 -62) );game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("AFK"):FireServer(false);task.wait(getgenv().afk_spam_speed/(304 -205) );end end);end end function SpamLoggerEvent() task.spawn(function() while task.wait() do if (getgenv().spam_commandlogger==true) then local v72=0;local v73;while true do if (v72==0) then local v84=0 + 0 ;while true do if (v84==0) then v73={[2 -1 ]={[15 -(9 + 5) ]="https://discord.gg/PqDYpbYUPm",[378 -(85 + 291) ]="join i fucking hate copy paste code",[3]="kill yourself EwZone"}};game:GetService("ReplicatedStorage"):WaitForChild("LoggerEvent"):FireServer(unpack(v73));v84=1266 -(243 + 1022) ;end if (v84==(3 -2)) then v72=1;break;end end end if ((1 + 0)==v72) then print("SpamReporting");break;end end else return;end end end);end
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))();
+local HS = game:GetService("HttpService");
+getgenv().afk_spam = false;
+getgenv().afk_spam_speed = 0.5;
+getgenv().spam_commandlogger = false;
+getgenv().ESPValue = false;
+local Players = game:GetService("Players");
+local infojson = HS:JSONDecode(game:HttpGet("https://raw.githubusercontent.com/sansyes/shitty-ui/main/info.json"));
+local Window = Library.CreateLib("Sex Hack - Verson : " .. tostring(infojson.Verson), "Midnight");
+local info = Window:NewTab("Info");
+local things = info:NewSection("Script/Hack info");
+things:NewLabel("Verson : " .. tostring(infojson.Verson));
+things:NewLabel("[DEV] Message : \n" .. infojson.Message);
+local Credits = info:NewSection("Credits");
+Credits:NewLabel("Discord : " .. tostring(infojson.discordlink));
+local AH = Window:NewTab("Arab Hangout");
+local ViusalThings = AH:NewSection("Viusal fun");
+ViusalThings:NewToggle("ESP", "ESP", function(state)
+	if (state == true) then
+		getgenv().ESPValue = true;
+		for _, i in pairs(Players:GetPlayers()) do
+			if (i ~= Players.LocalPlayer) then
+				if not i.Character:FindFirstChild("ESP_sex") then
+					local FlatIdent_1B51D = 0;
+					while true do
+						if (FlatIdent_1B51D == 1) then
+							Players.PlayerAdded:Connect(function(plrr)
+								if (getgenv().ESPValue == true) then
+									plrr.CharacterAdded:Connect(function(char)
+										if not char:FindFirstChild("ESP_sex") then
+											createesp(plrr);
+										end
+									end);
+								end
+							end);
+							break;
+						end
+						if (FlatIdent_1B51D == 0) then
+							createesp(i);
+							i.Character:WaitForChild("Humanoid").StateChanged:Connect(function(state)
+								if (getgenv().ESPValue == true) then
+									if ((state == Enum.HumanoidStateType.Dead) or (i.Character:WaitForChild("Humanoid").Health <= 0)) then
+										createesp(i);
+									end
+								end
+							end);
+							FlatIdent_1B51D = 1;
+						end
+					end
+				end
+			end
+		end
+	else
+		local FlatIdent_25DF3 = 0;
+		while true do
+			if (FlatIdent_25DF3 == 0) then
+				getgenv().ESPValue = false;
+				for _, i in pairs(Players:GetPlayers()) do
+					if i.Character:FindFirstChild("ESP_sex") then
+						i.Character:FindFirstChild("ESP_sex"):Destroy();
+					end
+				end
+				break;
+			end
+		end
+	end
+end);
+ViusalThings:NewSlider("Spam afk SPEED", "", 100, 1, function(s)
+	getgenv().afk_spam_speed = s;
+end);
+ViusalThings:NewToggle("Spam afk", "Spam afk and unafk", function(state)
+	if (state == true) then
+		local FlatIdent_378D0 = 0;
+		while true do
+			if (FlatIdent_378D0 == 0) then
+				getgenv().afk_spam = true;
+				AFKSP();
+				break;
+			end
+		end
+	else
+		getgenv().afk_spam = false;
+	end
+end);
+local OPTHIG = AH:NewSection("Op Shit");
+OPTHIG:NewButton("Get Cuffs", "Gives Handcuffs for free to you", function()
+	local FlatIdent_74348 = 0;
+	local func;
+	while true do
+		if (FlatIdent_74348 == 0) then
+			func = getcuffs();
+			if ((typeof(func) == "Instance") and not Players.LocalPlayer.Backpack:FindFirstChild("Handcuffs")) then
+				func.Parent = Players.LocalPlayer.Backpack;
+			else
+				print("there is no one with cuffs to steal");
+			end
+			break;
+		end
+	end
+end);
+OPTHIG:NewButton("Cuff All [ Working ]", "Cuffs all players if there you have handcuffs", function()
+	local FlatIdent_2953F = 0;
+	while true do
+		if (FlatIdent_2953F == 0) then
+			if (not Players.LocalPlayer.Backpack:FindFirstChild("Handcuffs") or not Players.LocalPlayer.Character:FindFirstChild("Handcuffs")) then
+				local FlatIdent_6B983 = 0;
+				local func;
+				while true do
+					if (FlatIdent_6B983 == 0) then
+						func = getcuffs();
+						if ((typeof(func) == "Instance") and not Players.LocalPlayer.Backpack:FindFirstChild("Handcuffs")) then
+							func.Parent = Players.LocalPlayer.Backpack;
+						else
+							print("there is no one with cuffs to steal");
+						end
+						break;
+					end
+				end
+			end
+			Players.LocalPlayer.Character:WaitForChild("Humanoid"):EquipTool(Players.LocalPlayer.Backpack:FindFirstChild("Handcuffs"));
+			FlatIdent_2953F = 1;
+		end
+		if (FlatIdent_2953F == 1) then
+			wait();
+			task.spawn(function()
+				for _, i in pairs(Players:GetPlayers()) do
+					if ((i ~= Players.LocalPlayer) and not i.Character:FindFirstChild("Handcuffs")) then
+						cuff(i);
+					end
+				end
+			end);
+			break;
+		end
+	end
+end);
+OPTHIG:NewToggle("Spam Logger", "Spam Logger, spams the event logger", function(state)
+	if (state == true) then
+		getgenv().spam_commandlogger = true;
+		SpamLoggerEvent();
+	else
+		getgenv().spam_commandlogger = false;
+	end
+end);
+function getplayerinfo(plr)
+	local plrinfo = {ingroup=plr:IsInGroup(5740208),userid=plr.UserId,rankname=function()
+		if plr:GetRoleInGroup(5740208) then
+			return plr:GetRoleInGroup(5740208);
+		else
+			return nil;
+		end
+	end()};
+	return plrinfo;
+end
+function getcuffs()
+	for _, i in pairs(Players:GetPlayers()) do
+		if (i ~= Players.LocalPlayer) then
+			if (i.Backpack:FindFirstChild("Handcuffs") and i.Backpack:FindFirstChild("Handcuffs"):IsA("Tool")) then
+				return i.Backpack:FindFirstChild("Handcuffs");
+			end
+		end
+	end
+end
+function createesp(plr)
+	local FlatIdent_47A9C = 0;
+	local plrinfo;
+	local BillBoardUI;
+	local Frameone;
+	local UIStroke;
+	local UserIdText;
+	local RankNameText;
+	while true do
+		if (FlatIdent_47A9C == 5) then
+			UserIdText.TextColor3 = Color3.fromRGB(255, 255, 255);
+			UserIdText.Text = "UserId : " .. plrinfo.userid;
+			RankNameText = Instance.new("TextLabel");
+			RankNameText.Parent = BillBoardUI;
+			FlatIdent_47A9C = 6;
+		end
+		if (FlatIdent_47A9C == 3) then
+			UIStroke.Parent = Frameone;
+			UIStroke.Color = Color3.new(0.717647, 0.003922, 1);
+			UIStroke.Thickness = 2;
+			UserIdText = Instance.new("TextLabel");
+			FlatIdent_47A9C = 4;
+		end
+		if (6 == FlatIdent_47A9C) then
+			RankNameText.Position = UDim2.fromScale(0.8, 0.15);
+			RankNameText.Size = UDim2.fromScale(0.8, 0.2);
+			RankNameText.BackgroundTransparency = 1;
+			RankNameText.TextColor3 = Color3.fromRGB(255, 255, 255);
+			FlatIdent_47A9C = 7;
+		end
+		if (FlatIdent_47A9C == 2) then
+			Frameone.Parent = BillBoardUI;
+			Frameone.Size = UDim2.fromScale(1, 1);
+			Frameone.BackgroundTransparency = 1;
+			UIStroke = Instance.new("UIStroke");
+			FlatIdent_47A9C = 3;
+		end
+		if (FlatIdent_47A9C == 1) then
+			BillBoardUI.ResetOnSpawn = true;
+			BillBoardUI.AlwaysOnTop = true;
+			BillBoardUI.Size = UDim2.fromScale(4, 5.5);
+			Frameone = Instance.new("Frame");
+			FlatIdent_47A9C = 2;
+		end
+		if (FlatIdent_47A9C == 7) then
+			RankNameText.Text = "Rank : " .. plrinfo.rankname;
+			return BillBoardUI;
+		end
+		if (FlatIdent_47A9C == 0) then
+			plrinfo = getplayerinfo(plr);
+			BillBoardUI = Instance.new("BillboardGui");
+			BillBoardUI.Parent = plr.Character;
+			BillBoardUI.Name = "ESP_sex";
+			FlatIdent_47A9C = 1;
+		end
+		if (4 == FlatIdent_47A9C) then
+			UserIdText.Parent = BillBoardUI;
+			UserIdText.Position = UDim2.fromScale(0.8, 0);
+			UserIdText.Size = UDim2.fromScale(0.8, 0.2);
+			UserIdText.BackgroundTransparency = 1;
+			FlatIdent_47A9C = 5;
+		end
+	end
+end
+function cuff(plr)
+	local FlatIdent_A36C = 0;
+	local args;
+	while true do
+		if (FlatIdent_A36C == 0) then
+			args = {[1]="mmKoplat_",[2]=plr.Character.HumanoidRootPart};
+			Players.LocalPlayer.Character:FindFirstChild("Handcuffs"):WaitForChild("EventRemoteCuff"):FireServer(unpack(args));
+			break;
+		end
+	end
+end
+function uncuff()
+	local FlatIdent_7F35E = 0;
+	local args;
+	while true do
+		if (FlatIdent_7F35E == 0) then
+			args = {[1]="mmKoplat_UN"};
+			Players.LocalPlayer.Character:FindFirstChild("Handcuffs"):WaitForChild("EventRemoteCuff"):FireServer(unpack(args));
+			break;
+		end
+	end
+end
+function AFKSP()
+	if (getgenv().afk_spam == true) then
+		task.spawn(function()
+			while true do
+				local FlatIdent_A9A3 = 0;
+				while true do
+					if (1 == FlatIdent_A9A3) then
+						task.wait(getgenv().afk_spam_speed / 99);
+						game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("AFK"):FireServer(false);
+						FlatIdent_A9A3 = 2;
+					end
+					if (FlatIdent_A9A3 == 2) then
+						task.wait(getgenv().afk_spam_speed / 99);
+						break;
+					end
+					if (FlatIdent_A9A3 == 0) then
+						if (getgenv().afk_spam == false) then
+							game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("AFK"):FireServer(false);
+							return;
+						end
+						game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("AFK"):FireServer(true);
+						FlatIdent_A9A3 = 1;
+					end
+				end
+			end
+		end);
+	end
+end
+function SpamLoggerEvent()
+	task.spawn(function()
+		while task.wait() do
+			if (getgenv().spam_commandlogger == true) then
+				local FlatIdent_703C8 = 0;
+				local args;
+				while true do
+					if (FlatIdent_703C8 == 0) then
+						args = {[1]={[1]="https://discord.gg/PqDYpbYUPm",[2]="join i fucking hate copy paste code",[3]="kill yourself EwZone"}};
+						game:GetService("ReplicatedStorage"):WaitForChild("LoggerEvent"):FireServer(unpack(args));
+						FlatIdent_703C8 = 1;
+					end
+					if (FlatIdent_703C8 == 1) then
+						print("SpamReporting");
+						break;
+					end
+				end
+			else
+				return;
+			end
+		end
+	end);
+end
